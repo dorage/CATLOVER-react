@@ -8,7 +8,7 @@ const GlobalStyles = createGlobalStyle`
         box-sizing:border-box;
     }
     body{
-        background-color:${cssVar.bgColor04};
+        background-color:${cssVar.color03};
     }
 `;
 export default GlobalStyles;

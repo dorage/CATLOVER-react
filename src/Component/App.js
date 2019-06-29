@@ -6,9 +6,10 @@ import Splash from './Splash';
 import Gallery from './Gallery';
 import Poster from './Poster';
 import TestDB from '../db';
+import Footer from './Footer';
 
-const A = styled.div`
-    height: 10000px;
+const Container = styled.div`
+    padding: 50px;
 `;
 
 const App = () => {
@@ -16,13 +17,15 @@ const App = () => {
         <>
             <GlobalStyles />
             <Header />
-            <Splash />
-            <Gallery>
-                {TestDB.imgs.map(src => (
-                    <Poster src={src} />
-                ))}
-            </Gallery>
-            <A />
+            <Container>
+                <Splash />
+                <Gallery>
+                    {TestDB.imgs2.map(src => (
+                        <Poster src={src} />
+                    ))}
+                </Gallery>
+            </Container>
+            <Footer />
         </>
     );
 };

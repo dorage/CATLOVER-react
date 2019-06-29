@@ -3,16 +3,20 @@ import styled from 'styled-components';
 import { cssVar } from '../vars';
 
 const Container = styled.div`
-    position: absolute;
-    top: 430px;
     width: 100%;
 `;
-const Section = styled.div``;
+const Section = styled.div`
+    color: white;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 600;
+`;
 const Grid = styled.div`
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(auto-fill, 300px);
-    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fill, 350px);
+    grid-gap: 10px;
 `;
 
 const Gallery = ({ children }) => (

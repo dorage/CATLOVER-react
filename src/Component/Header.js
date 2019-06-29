@@ -2,16 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { cssVar } from '../vars';
 
-const height = 30;
+const height = 40;
 
 const Container = styled.div`
-    position: fixed;
-    background-color: ${cssVar.bgColor0};
+    background-color: ${cssVar.color01};
     width: 100%;
     height: ${height}px;
     display: flex;
     flex-direction: row-reverse;
     z-index: 10;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: ${cssVar.color04};
 `;
 
 const List = styled.ul``;
@@ -27,7 +29,7 @@ const UserMenu = styled.div`
 const UserItem = styled.span`
     display: block;
     width: 50px;
-    color: white;
+    color: ${cssVar.color04};
     height: ${height}px;
     line-height: ${height}px;
     margin-right: 20px;

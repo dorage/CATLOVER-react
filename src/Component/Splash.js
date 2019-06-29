@@ -3,15 +3,17 @@ import styled from 'styled-components';
 import { cssVar } from '../vars';
 
 const Container = styled.div`
-    position: absolute;
     display: flex;
     top: 30px;
     width: 100%;
     height: 400px;
+    background-color: ${cssVar.color03};
+    color: white;
 `;
 
 const SplashImage = styled.img`
-    width: 30%;
+    height: 400px;
+    width: auto;
     object-fit: cover;
 `;
 
@@ -20,47 +22,60 @@ const ManipulateContainer = styled.div`
 `;
 
 const LogoContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-content: center;
     width: 100%;
     height: 50%;
-    background-color: ${cssVar.bgColor01};
     font-size: 100px;
     color: white;
 `;
-const Title = styled.span`
-    display: inline-block;
-    justify-content: center;
+const Title = styled.img`
+    display: block;
+    margin: 50px;
+    height: 50%;
+    width: auto;
 `;
 
 const SearchContainer = styled.div`
     width: 100%;
     height: 25%;
-    background-color: brown;
+`;
+const Form = styled.form`
+    display: flex;
+    vertical-align: center;
+    align-content: center;
+    align-items: center;
 `;
 const SearchBar = styled.input`
-    display: inline-block;
+    display: block;
     width: 60%;
-    border: none;
-    background-color: ${cssVar.bgColor04};
+    height: 30px;
+    margin: 0 auto;
+    margin-top: 30px;
+    border-style: solid;
+    border-color: ${cssVar.color04};
+    background-color: rgb(80, 80, 80);
+    background-color: ${cssVar.color03};
 `;
 const MenuContainer = styled.div`
     width: 100%;
     height: 25%;
-    background-color: greenyellow;
 `;
 
 const Splash = () => (
     <Container>
-        <SplashImage src="https://lovethereum-local.s3.ap-northeast-2.amazonaws.com/marvin-meyer-672573-unsplash.png" />
+        <SplashImage src="https://lovethereum-local.s3.ap-northeast-2.amazonaws.com/swimwear_zoomin2.png" />
         <ManipulateContainer>
             <LogoContainer>
-                <Title>HOTTIE-F</Title>
+                <Title src="https://lovethereum-local.s3.ap-northeast-2.amazonaws.com/splash-logo-white.png"></Title>
             </LogoContainer>
             <SearchContainer>
-                <div>searchbar</div>
-                <SearchBar placeholder="search term..." />
-                <div>Hot Terms</div>
+                <Form>
+                    <SearchBar placeholder="  search term..." />
+                </Form>
             </SearchContainer>
-            <MenuContainer>HotGirls</MenuContainer>
+            <MenuContainer></MenuContainer>
         </ManipulateContainer>
     </Container>
 );
