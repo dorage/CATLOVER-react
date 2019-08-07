@@ -8,8 +8,9 @@ const GlobalStyles = createGlobalStyle`
         box-sizing:border-box;
     }
     body{
+        margin-top:${cssVar.headerH};
         overflow-x:hidden;
-        background-color:${cssVar.color03};
+        background-color:${cssVar.charcoal};
     }
 `;
 export default GlobalStyles;

@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import Header from './Header';
 import GlobalStyles from './GlobalStyles';
 import Splash from './Splash';
-import Gallery from './Gallery';
-import Poster from './Poster';
-import TestDB from '../db';
+import Gallery from '../Routes/Gallery';
+import Router from './Router';
 import Footer from './Footer';
 
 const Container = styled.div`
@@ -18,12 +17,7 @@ const App = () => {
             <GlobalStyles />
             <Header />
             <Container>
-                <Splash />
-                <Gallery>
-                    {TestDB.imgs2.map(src => (
-                        <Poster src={src} />
-                    ))}
-                </Gallery>
+                <Router />
             </Container>
             <Footer />
         </>

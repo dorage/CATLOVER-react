@@ -7,7 +7,6 @@ const Container = styled.div`
     top: 30px;
     width: 100%;
     height: 400px;
-    background-color: ${cssVar.color03};
     color: white;
 `;
 
@@ -54,9 +53,9 @@ const SearchBar = styled.input`
     margin: 0 auto;
     margin-top: 30px;
     border-style: solid;
-    border-color: ${cssVar.color04};
+    border-color: ${cssVar.gold};
     background-color: rgb(80, 80, 80);
-    background-color: ${cssVar.color03};
+    background-color: ${cssVar.charcoal};
 `;
 const MenuContainer = styled.div`
     width: 100%;

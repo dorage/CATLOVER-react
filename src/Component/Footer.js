@@ -4,7 +4,7 @@ import { cssVar } from '../vars';
 
 const Container = styled.div``;
 const Line = styled.hr`
-    border-color: ${cssVar.color04};
+    border-color: ${cssVar.gold};
 `;
 const FooterBox = styled.div`
     display: flex;
@@ -14,7 +14,7 @@ const FooterBox = styled.div`
 `;
 const Text = styled.span`
     font-size: 11px;
-    color: ${cssVar.color02};
+    color: ${cssVar.gold};
 `;
 
 const Footer = () => (
