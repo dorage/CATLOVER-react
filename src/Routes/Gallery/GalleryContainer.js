@@ -1,6 +1,4 @@
 import React from 'react';
-import TestDB from '../../db';
-import Poster from '../../Component/Poster';
 import GalleryPresenter from './GalleryPresenter';
 import { serverApi } from '../../api';
 
@@ -14,7 +12,9 @@ export default class extends React.Component {
     async componentDidMount() {
         try {
             const {
-                data: { results: top20 }
+                data: {
+                    results: { top20 }
+                }
             } = await serverApi.top20();
             this.setState({ top20, loading: false });
         } catch (e) {

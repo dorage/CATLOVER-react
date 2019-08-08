@@ -9,4 +9,6 @@ export const cssVar = {
     headerH: '50px' // header height
 };
 
+export const routes = {};
+
 export const nothing = null;

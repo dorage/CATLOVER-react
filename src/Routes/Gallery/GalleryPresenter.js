@@ -22,12 +22,16 @@ export default ({ top20, loading, error }) => {
     return (
         <Container>
             <Splash />
-            <Section>Recommended For You</Section>
+            <Section>Today Pick</Section>
             <Grid>
                 {loading
                     ? ''
                     : top20.map(elem => (
-                        <Poster key={elem._id} src={elem.images[0]} />
+                        <Poster
+                            key={elem._id}
+                            id={elem._id}
+                            src={elem.images[0]}
+                        />
                     ))}
             </Grid>
         </Container>

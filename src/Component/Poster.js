@@ -11,9 +11,16 @@ const Image = styled.div`
     background-size: cover;
 `;
 
-const Poster = ({ src }) => (
+const Link = styled.a`
+    width: 100%;
+    height: 100%;
+`;
+
+const Poster = ({ id, src }) => (
     <Container>
-        <Image src={src} />
+        <Link href={`http://localhost:3000/post/${id}`}>
+            <Image src={src} />
+        </Link>
     </Container>
 );
 

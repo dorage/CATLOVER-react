@@ -5,7 +5,8 @@ const api = axios.create({
 });
 
 export const serverApi = {
-    top20: () => api.get('api/top20')
+    top20: () => api.get('api/top20'),
+    postDetail: postId => api.get(`api/post/detail/${postId}`)
 };
 
 export const nothing = null;
