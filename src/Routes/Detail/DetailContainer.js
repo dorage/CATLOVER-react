@@ -21,6 +21,7 @@ export default class extends React.Component {
         try {
             const detail = await serverApi.postDetail(id);
             this.setState({ detail });
+            console.log(detail.data.results);
         } catch (e) {
             console.log(e);
         }
@@ -28,7 +29,6 @@ export default class extends React.Component {
 
     render() {
         const { detail, loading, error } = this.state;
-        console.log(detail, loading, error);
         return <DetailPresenter />;
     }
 }
