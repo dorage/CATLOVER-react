@@ -19,9 +19,10 @@ export default class extends React.Component {
             }
         } = this.props;
         try {
-            const detail = await serverApi.postDetail(id);
-            this.setState({ detail });
-            console.log(detail.data.results);
+            const {
+                data: { results: detail }
+            } = await serverApi.postDetail(id);
+            this.setState({ detail, loading: false });
         } catch (e) {
             console.log(e);
         }
@@ -29,6 +30,9 @@ export default class extends React.Component {
 
     render() {
         const { detail, loading, error } = this.state;
-        return <DetailPresenter />;
+        console.log(this.state);
+        return (
+            <DetailPresenter detail={detail} loading={loading} error={error} />
+        );
     }
 }
