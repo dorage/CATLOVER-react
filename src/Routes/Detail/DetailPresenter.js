@@ -118,7 +118,7 @@ export default ({ detail, loading, error }) => (
                         </InstagramInfo>
                         <PostInfo>
                             <LikeContainer>
-                                Likes:1236
+                                Likes : {detail.post.like}
                                 <LikeButton name="like">❤</LikeButton>
                             </LikeContainer>
                             <TagContainer>Tags</TagContainer>

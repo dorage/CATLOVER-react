@@ -12,6 +12,8 @@ export default class extends React.Component {
         };
     }
 
+    like() {}
+
     async componentDidMount() {
         const {
             match: {
