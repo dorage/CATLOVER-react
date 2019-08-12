@@ -6,7 +6,11 @@ const api = axios.create({
 
 export const serverApi = {
     top20: () => api.get('api/top20'),
-    postDetail: postId => api.get(`api/post/detail/${postId}`)
+    postDetail: postId => api.get(`api/post/detail/${postId}`),
+    girlDetail: girlId => api.get(`api/girl/detail/${girlId}`),
+    totalRank: () => api.get('api/total/rank'),
+    postRank: () => api.get('api/post/rank'),
+    girlRank: async () => api.get('api/girl/rank')
 };
 
 export const nothing = null;

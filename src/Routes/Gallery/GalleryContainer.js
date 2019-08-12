@@ -5,7 +5,7 @@ import { serverApi } from '../../api';
 export default class extends React.Component {
     state = {
         top20: null,
-        error: null,
+        error: false,
         loading: true
     };
 
@@ -18,7 +18,8 @@ export default class extends React.Component {
             } = await serverApi.top20();
             this.setState({ top20, loading: false });
         } catch (e) {
-            this.setState({ error: 'error!' });
+            console.log(e);
+            this.setState({ error: true });
         }
     }
 

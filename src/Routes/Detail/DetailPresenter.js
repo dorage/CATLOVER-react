@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import ImageViewer from '../../Component/ImageViewer';
 import { cssVar } from '../../vars';
+import Ranking from '../../Component/Ranking';
 
 const Container = styled.div``;
 const PostContainer = styled.div`
@@ -13,14 +15,6 @@ const ImageBox = styled.div`
     width: 50%;
     height: 100%;
     padding: 20px;
-`;
-const Image = styled.div`
-    background-image: url(${props => props.bgUrl});
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
 `;
 const PostBox = styled.div`
     display: flex;
@@ -37,6 +31,11 @@ const InstagramInfo = styled.div`
     justify-content: space-between;
     align-items: center;
 `;
+const ProfileLink = styled.a`
+    display: block;
+    width: 100%;
+    height: 100%;
+`;
 const Profile = styled.div`
     background: url(${props => props.bgUrl});
     background-position: center;
@@ -45,7 +44,7 @@ const Profile = styled.div`
     height: 200px;
     border-radius: 50%;
 `;
-const Nickname = styled.div`
+const Nickname = styled.a`
     color: ${cssVar.white};
     font-size: 30px;
     font-weight: 700;
@@ -100,7 +99,7 @@ const RealtedContainer = styled.div`
 `;
 const RelatedInfo = styled.div``;
 
-export default ({ detail, loading, error }) => (
+export default ({ results, loading, error }) => (
     <Container>
         {loading ? (
             'Loading'
@@ -108,17 +107,25 @@ export default ({ detail, loading, error }) => (
             <>
                 <PostContainer>
                     <ImageBox>
-                        <Image bgUrl={detail.post.images[0]} />
+                        <ImageViewer post={results.post} />
                     </ImageBox>
                     <PostBox>
                         <InstagramInfo>
-                            <Profile bgUrl={detail.post.images[0]} />
-                            <Nickname>{detail.instagram.id}</Nickname>
+                            <Profile bgUrl={results.post.images[0]}>
+                                <ProfileLink
+                                    href={`http://localhost:3000/girl/${results.girl._id}`}
+                                />
+                            </Profile>
+                            <Nickname
+                                href={`http://localhost:3000/girl/${results.girl._id}`}
+                            >
+                                {results.instagram.id}
+                            </Nickname>
                             <Line />
                         </InstagramInfo>
                         <PostInfo>
                             <LikeContainer>
-                                Likes : {detail.post.like}
+                                Likes : {results.post.like}
                                 <LikeButton name="like">❤</LikeButton>
                             </LikeContainer>
                             <TagContainer>Tags</TagContainer>
@@ -128,6 +135,7 @@ export default ({ detail, loading, error }) => (
                 <RealtedContainer>
                     Related
                     <RelatedInfo />
+                    <Ranking />
                 </RealtedContainer>
             </>
         )}

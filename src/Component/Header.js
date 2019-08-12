@@ -18,6 +18,13 @@ const Container = styled.div`
     border-color: ${cssVar.gold};
 `;
 
+const Home = styled.div`
+    height: 100%;
+    margin: 0 auto;
+    color: white;
+`;
+const Link = styled.a``;
+
 const List = styled.ul``;
 
 const Item = styled.li``;
@@ -39,10 +46,14 @@ const UserItem = styled.span`
 
 const Header = () => (
     <Container>
+        <Home>
+            <Link href="/">Home</Link>
+        </Home>
         <List>
             <Item />
         </List>
         <UserMenu>
+            <UserItem></UserItem>
             <UserItem>login</UserItem>
             <UserItem>signup</UserItem>
         </UserMenu>

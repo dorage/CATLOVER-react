@@ -6,9 +6,9 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            detail: null,
+            results: null,
             loading: true,
-            error: null
+            error: false
         };
     }
 
@@ -22,19 +22,23 @@ export default class extends React.Component {
         } = this.props;
         try {
             const {
-                data: { results: detail }
+                data: { results }
             } = await serverApi.postDetail(id);
-            this.setState({ detail, loading: false });
+            this.setState({ results, loading: false });
         } catch (e) {
             console.log(e);
+            this.setState({ error: true });
         }
     }
 
     render() {
-        const { detail, loading, error } = this.state;
-        console.log(this.state);
+        const { results, loading, error } = this.state;
         return (
-            <DetailPresenter detail={detail} loading={loading} error={error} />
+            <DetailPresenter
+                results={results}
+                loading={loading}
+                error={error}
+            />
         );
     }
 }
