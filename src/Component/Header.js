@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { cssVar } from '../vars';
-
-const height = 40;
+import { cssVar, Assets } from '../vars';
+import GoogleAuth from './GoogleAuth';
 
 const Container = styled.div`
     position: relative;
     bottom: ${cssVar.headerH};
-    height: ${cssVar.headerH}px;
+    height: ${cssVar.headerH};
     background-color: ${cssVar.black};
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
+    justify-content: space-between;
     z-index: 10;
     border-bottom-style: solid;
     border-bottom-width: 1px;
@@ -19,44 +19,36 @@ const Container = styled.div`
 `;
 
 const Home = styled.div`
-    height: 100%;
-    margin: 0 auto;
+    background: url(${Assets.imgHottieLogo});
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: ${cssVar.headerH};
     color: white;
+    margin-left: 30px;
 `;
-const Link = styled.a``;
-
-const List = styled.ul``;
-
-const Item = styled.li``;
+const Link = styled.a`
+    width: 100%;
+    height: 100%;
+`;
 
 const UserMenu = styled.div`
     display: flex;
     text-align: center;
-    height: ${height}px;
-`;
-
-const UserItem = styled.span`
-    display: block;
-    width: 50px;
-    color: ${cssVar.gold};
-    height: ${height}px;
-    line-height: ${height}px;
+    font-size: 24px;
+    height: 100%;
     margin-right: 20px;
 `;
 
 const Header = () => (
     <Container>
-        <Home>
-            <Link href="/">Home</Link>
-        </Home>
-        <List>
-            <Item />
-        </List>
         <UserMenu>
-            <UserItem></UserItem>
-            <UserItem>login</UserItem>
-            <UserItem>signup</UserItem>
+            <GoogleAuth />
         </UserMenu>
+        <Link href="/">
+            <Home />
+        </Link>
     </Container>
 );
 

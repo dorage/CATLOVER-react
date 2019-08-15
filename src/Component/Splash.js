@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Ranking from './Ranking';
 import { cssVar } from '../vars';
 
 const Container = styled.div`
@@ -9,6 +10,11 @@ const Container = styled.div`
     height: 400px;
     color: white;
 `;
+const RankingContainer = styled.div`
+    display: flex;
+    align-items: center;
+    width: 20%;
+`;
 
 const SplashImage = styled.img`
     height: 400px;
@@ -17,7 +23,7 @@ const SplashImage = styled.img`
 `;
 
 const ManipulateContainer = styled.div`
-    width: 100%;
+    width: 80%;
 `;
 
 const LogoContainer = styled.div`
@@ -64,7 +70,6 @@ const MenuContainer = styled.div`
 
 const Splash = () => (
     <Container>
-        <SplashImage src="https://lovethereum-local.s3.ap-northeast-2.amazonaws.com/swimwear_zoomin2.png" />
         <ManipulateContainer>
             <LogoContainer>
                 <Title src="https://lovethereum-local.s3.ap-northeast-2.amazonaws.com/splash-logo-white.png"></Title>
@@ -76,6 +81,9 @@ const Splash = () => (
             </SearchContainer>
             <MenuContainer></MenuContainer>
         </ManipulateContainer>
+        <RankingContainer>
+            <Ranking />
+        </RankingContainer>
     </Container>
 );
 

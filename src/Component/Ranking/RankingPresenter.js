@@ -8,7 +8,7 @@ const Container = styled.div`
     outline: solid 1px;
     outline-color: ${cssVar.gold};
     padding: 5px;
-    width: 20%;
+    width: 100%;
 `;
 
 const CategoryContainer = styled.div`
@@ -41,6 +41,9 @@ const RankBox = styled.div`
         font-size: 10px;
         color: ${cssVar.gold};
     }
+    :nth-child(even) {
+        background-color: ${cssVar.charcoal};
+    }
 `;
 const Rank = styled.div`
     width: 10%;
@@ -72,19 +75,19 @@ export default ({ girlRank, results, loading, error, isGirlRank }) => (
                 </RankBox>
                 {loading
                     ? Array(10).map((elem, index) => (
-                          <RankBox>
-                              <Rank>{index}</Rank>
-                              <Name>loading</Name>
-                              <Likes>0</Likes>
-                          </RankBox>
-                      ))
+                        <RankBox>
+                            <Rank>{index}</Rank>
+                            <Name>loading</Name>
+                            <Likes>0</Likes>
+                        </RankBox>
+                    ))
                     : results.girl.map((elem, index) => (
-                          <RankBox key={elem._id}>
-                              <Rank>{index + 1}</Rank>
-                              <Name>{elem.name}</Name>
-                              <Likes>{elem.like}</Likes>
-                          </RankBox>
-                      ))}
+                        <RankBox key={elem._id}>
+                            <Rank>{index + 1}</Rank>
+                            <Name>{elem.name}</Name>
+                            <Likes>{elem.like}</Likes>
+                        </RankBox>
+                    ))}
             </RankContainer>
         ) : (
             // Post Ranking
@@ -96,19 +99,19 @@ export default ({ girlRank, results, loading, error, isGirlRank }) => (
                 </RankBox>
                 {loading
                     ? Array(10).map((elem, index) => (
-                          <RankBox>
-                              <Rank>{index}</Rank>
-                              <Name>loading</Name>
-                              <Likes>0</Likes>
-                          </RankBox>
-                      ))
+                        <RankBox>
+                            <Rank>{index}</Rank>
+                            <Name>loading</Name>
+                            <Likes>0</Likes>
+                        </RankBox>
+                    ))
                     : results.post.map((elem, index) => (
-                          <RankBox key={elem._id}>
-                              <Rank>{index + 1}</Rank>
-                              <Name>{elem.link}</Name>
-                              <Likes>{elem.like}</Likes>
-                          </RankBox>
-                      ))}
+                        <RankBox key={elem._id}>
+                            <Rank>{index + 1}</Rank>
+                            <Name>{elem.link}</Name>
+                            <Likes>{elem.like}</Likes>
+                        </RankBox>
+                    ))}
             </RankContainer>
         )}
     </Container>

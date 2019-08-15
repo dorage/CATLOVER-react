@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import ImageViewer from '../../Component/ImageViewer';
 import { cssVar } from '../../vars';
-import Ranking from '../../Component/Ranking';
 
 const Container = styled.div``;
 const PostContainer = styled.div`
@@ -31,11 +30,6 @@ const InstagramInfo = styled.div`
     justify-content: space-between;
     align-items: center;
 `;
-const ProfileLink = styled.a`
-    display: block;
-    width: 100%;
-    height: 100%;
-`;
 const Profile = styled.div`
     background: url(${props => props.bgUrl});
     background-position: center;
@@ -43,6 +37,11 @@ const Profile = styled.div`
     width: 200px;
     height: 200px;
     border-radius: 50%;
+`;
+const ProfileLink = styled.a`
+    display: block;
+    width: 100%;
+    height: 100%;
 `;
 const Nickname = styled.a`
     color: ${cssVar.white};
@@ -96,6 +95,7 @@ const RealtedContainer = styled.div`
     font-weight: 600;
     margin-top: ${cssVar.headerH};
     color: ${cssVar.white};
+    display: flex;
 `;
 const RelatedInfo = styled.div``;
 
@@ -135,7 +135,6 @@ export default ({ results, loading, error }) => (
                 <RealtedContainer>
                     Related
                     <RelatedInfo />
-                    <Ranking />
                 </RealtedContainer>
             </>
         )}

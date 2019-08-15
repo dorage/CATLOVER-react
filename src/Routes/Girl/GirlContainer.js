@@ -19,7 +19,6 @@ export default class extends React.Component {
             const {
                 data: { results }
             } = await serverApi.girlDetail(id);
-            console.log(results.girl);
             this.setState({ results, loading: false });
         } catch (e) {
             console.log(e);
@@ -28,6 +27,10 @@ export default class extends React.Component {
     }
 
     render() {
-        return <GirlPresenter></GirlPresenter>;
+        const { results, loading, error } = this.state;
+        console.log(results);
+        return (
+            <GirlPresenter results={results} loading={loading} error={error} />
+        );
     }
 }

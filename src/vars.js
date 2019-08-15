@@ -1,7 +1,11 @@
 import imgNoImage from './Assets/noimage.png';
+import imgInstagramIcon from './Assets/instagram.png';
+import imgHottieLogo from './Assets/splash-logo-white.png';
 
 export const Assets = {
-    imgNoImage
+    imgNoImage,
+    imgInstagramIcon,
+    imgHottieLogo
 };
 
 const black = `#0E0F11`; // 헤더색상
