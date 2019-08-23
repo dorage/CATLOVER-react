@@ -40,6 +40,7 @@ const SubImage = styled.div`
     margin: 10px;
     outline: ${props =>
         props.index === props.selection ? 'solid 2px' : 'none'};
+    box-shadow: 1px 2px ${cssVar.gold};
     outline-color: ${cssVar.gold};
     cursor: pointer;
 `;

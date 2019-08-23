@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { cssVar, Assets } from '../vars';
 import GoogleAuth from './GoogleAuth';
+import AuthContext from './AuthContext';
 
 const Container = styled.div`
     position: relative;
@@ -18,6 +19,9 @@ const Container = styled.div`
     border-color: ${cssVar.gold};
 `;
 
+const Link = styled.a`
+    margin-left: 30px;
+`;
 const Home = styled.div`
     background: url(${Assets.imgHottieLogo});
     background-position: center;
@@ -26,11 +30,6 @@ const Home = styled.div`
     width: 100px;
     height: ${cssVar.headerH};
     color: white;
-    margin-left: 30px;
-`;
-const Link = styled.a`
-    width: 100%;
-    height: 100%;
 `;
 
 const UserMenu = styled.div`
@@ -38,13 +37,28 @@ const UserMenu = styled.div`
     text-align: center;
     font-size: 24px;
     height: 100%;
-    margin-right: 20px;
+    margin-right: 30px;
+`;
+
+const Text = styled.div`
+    color: white;
 `;
 
 const Header = () => (
     <Container>
         <UserMenu>
-            <GoogleAuth />
+            <AuthContext.AuthConsumer>
+                {({ state, actions }) =>
+                    state.tokenId ? (
+                        <Text>logged In</Text>
+                    ) : (
+                        <GoogleAuth
+                            onSuccess={actions.onSuccess}
+                            onFailure={actions.onFailure}
+                        />
+                    )
+                }
+            </AuthContext.AuthConsumer>
         </UserMenu>
         <Link href="/">
             <Home />

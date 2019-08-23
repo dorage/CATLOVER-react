@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import ImageViewer from '../../Component/ImageViewer';
+import LikeButton from '../../Component/LikeButton';
+import Tags from '../../Component/Tags';
 import { cssVar } from '../../vars';
 
 const Container = styled.div``;
@@ -60,33 +62,24 @@ const PostInfo = styled.div`
     flex-direction: column;
     align-items: center;
 `;
-const LikeContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    color: ${cssVar.white};
-    font-size: 20px;
-    align-items: center;
-`;
-const LikeButton = styled.button`
-    margin: 20px;
-    width: 60px;
-    height: 40px;
-    font-size: 20px;
-    color: white;
-    background-color: ${cssVar.gold};
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    :hover {
-        background-color: ${cssVar.purple};
-    }
-    :focus {
-        outline: none;
-    }
-`;
 const TagContainer = styled.div`
+    display: flex;
     color: ${cssVar.white};
+`;
+const Tag = styled.div`
+    background-color: ${cssVar.black};
+    color: ${cssVar.white};
+    box-shadow: 1px 2px ${cssVar.white};
+    margin: 5px;
+    border: solid 1px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    max-width: 110px;
+    :hover {
+        background-color: ${cssVar.black};
+        color: ${cssVar.purple};
+        box-shadow: 1px 2px ${cssVar.purple};
+    }
 `;
 const RealtedContainer = styled.div`
     width: 100%;
@@ -124,11 +117,8 @@ export default ({ results, loading, error }) => (
                             <Line />
                         </InstagramInfo>
                         <PostInfo>
-                            <LikeContainer>
-                                Likes : {results.post.like}
-                                <LikeButton name="like">❤</LikeButton>
-                            </LikeContainer>
-                            <TagContainer>Tags</TagContainer>
+                            <LikeButton like={results.post.like} />
+                            <Tags tags={results.girl.tags} />
                         </PostInfo>
                     </PostBox>
                 </PostContainer>

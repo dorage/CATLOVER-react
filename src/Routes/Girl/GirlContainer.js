@@ -26,6 +26,8 @@ export default class extends React.Component {
         }
     }
 
+    onClick() {}
+
     render() {
         const { results, loading, error } = this.state;
         console.log(results);

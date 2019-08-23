@@ -16,12 +16,6 @@ const RankingContainer = styled.div`
     width: 20%;
 `;
 
-const SplashImage = styled.img`
-    height: 400px;
-    width: auto;
-    object-fit: cover;
-`;
-
 const ManipulateContainer = styled.div`
     width: 80%;
 `;
@@ -58,6 +52,9 @@ const SearchBar = styled.input`
     height: 30px;
     margin: 0 auto;
     margin-top: 30px;
+    color: ${cssVar.white};
+    padding-left: 10px;
+    padding-right: 10px;
     border-style: solid;
     border-color: ${cssVar.gold};
     background-color: rgb(80, 80, 80);

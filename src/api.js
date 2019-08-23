@@ -10,7 +10,9 @@ export const serverApi = {
     girlDetail: girlId => api.get(`api/girl/detail/${girlId}`),
     totalRank: () => api.get('api/total/rank'),
     postRank: () => api.get('api/post/rank'),
-    girlRank: async () => api.get('api/girl/rank')
+    girlRank: async () => api.get('api/girl/rank'),
+
+    login: tokenId => api.post(`api/auth/login`, { tokenId })
 };
 
 export const nothing = null;
