@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { cssVar, Assets } from '../vars';
 import GoogleAuth from './GoogleAuth';
+import GoogleLoginButton from './GoogleLoginButton';
 import AuthContext from './AuthContext';
 
 const Container = styled.div`
@@ -39,23 +40,37 @@ const UserMenu = styled.div`
     height: 100%;
     margin-right: 30px;
 `;
-
-const Text = styled.div`
-    color: white;
+const AccountContainer = styled.div`
+    display: flex;
+    color: ${cssVar.gold};
+    height: 50px;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+`;
+const Greeting = styled.div`
+    color: ${cssVar.white};
+    height: 100%;
+`;
+const Name = styled.div`
+    color: ${cssVar.gold};
+    height: 100%;
 `;
 
 const Header = () => (
     <Container>
         <UserMenu>
             <AuthContext.AuthConsumer>
-                {({ state, actions }) =>
+                {({ state }) =>
                     state.tokenId ? (
-                        <Text>logged In</Text>
+                        <AccountContainer>
+                            <Greeting>
+                                Hello,
+                                <Name> {state.results.user.name}</Name>
+                            </Greeting>
+                        </AccountContainer>
                     ) : (
-                        <GoogleAuth
-                            onSuccess={actions.onSuccess}
-                            onFailure={actions.onFailure}
-                        />
+                        <GoogleAuth renderer={GoogleLoginButton} />
                     )
                 }
             </AuthContext.AuthConsumer>

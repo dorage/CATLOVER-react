@@ -6,13 +6,12 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: '',
             results: null,
             loading: true,
             error: false
         };
     }
-
-    like() {}
 
     async componentDidMount() {
         const {
@@ -24,7 +23,7 @@ export default class extends React.Component {
             const {
                 data: { results }
             } = await serverApi.postDetail(id);
-            this.setState({ results, loading: false });
+            this.setState({ id, results, loading: false });
         } catch (e) {
             console.log(e);
             this.setState({ error: true });
@@ -32,9 +31,10 @@ export default class extends React.Component {
     }
 
     render() {
-        const { results, loading, error } = this.state;
+        const { id, results, loading, error } = this.state;
         return (
             <DetailPresenter
+                id={id}
                 results={results}
                 loading={loading}
                 error={error}

@@ -35,7 +35,7 @@ const PostContainer = styled.div`
     font-weight: 600;
 `;
 
-export default ({ results, loading, error }) => (
+export default ({ id, results, loading, error }) => (
     <Container>
         {loading ? (
             <></>
@@ -46,7 +46,7 @@ export default ({ results, loading, error }) => (
                     <Profile />
                     <Nickname>뭉이</Nickname>
                 </ProfileContainer>
-                <LikeButton like={results.girl.like} />
+                <LikeButton type="girl" id={id} />
                 <Tags tags={results.girl.tags} />
                 <PostContainer>Post</PostContainer>
             </>

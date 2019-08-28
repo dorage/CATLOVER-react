@@ -4,6 +4,7 @@ import { serverApi } from '../../api';
 
 export default class extends React.Component {
     state = {
+        id: '',
         results: null,
         loading: true,
         error: false
@@ -19,20 +20,23 @@ export default class extends React.Component {
             const {
                 data: { results }
             } = await serverApi.girlDetail(id);
-            this.setState({ results, loading: false });
+            this.setState({ id, results, loading: false });
         } catch (e) {
             console.log(e);
             this.setState({ error: true });
         }
     }
 
-    onClick() {}
-
     render() {
-        const { results, loading, error } = this.state;
+        const { id, results, loading, error } = this.state;
         console.log(results);
         return (
-            <GirlPresenter results={results} loading={loading} error={error} />
+            <GirlPresenter
+                id={id}
+                results={results}
+                loading={loading}
+                error={error}
+            />
         );
     }
 }

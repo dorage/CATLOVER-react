@@ -62,25 +62,6 @@ const PostInfo = styled.div`
     flex-direction: column;
     align-items: center;
 `;
-const TagContainer = styled.div`
-    display: flex;
-    color: ${cssVar.white};
-`;
-const Tag = styled.div`
-    background-color: ${cssVar.black};
-    color: ${cssVar.white};
-    box-shadow: 1px 2px ${cssVar.white};
-    margin: 5px;
-    border: solid 1px;
-    border-radius: 10px;
-    padding: 5px 10px;
-    max-width: 110px;
-    :hover {
-        background-color: ${cssVar.black};
-        color: ${cssVar.purple};
-        box-shadow: 1px 2px ${cssVar.purple};
-    }
-`;
 const RealtedContainer = styled.div`
     width: 100%;
     height: 50%;
@@ -92,7 +73,7 @@ const RealtedContainer = styled.div`
 `;
 const RelatedInfo = styled.div``;
 
-export default ({ results, loading, error }) => (
+export default ({ id, results, loading, error }) => (
     <Container>
         {loading ? (
             'Loading'
@@ -117,7 +98,7 @@ export default ({ results, loading, error }) => (
                             <Line />
                         </InstagramInfo>
                         <PostInfo>
-                            <LikeButton like={results.post.like} />
+                            <LikeButton type="post" id={id} />
                             <Tags tags={results.girl.tags} />
                         </PostInfo>
                     </PostBox>

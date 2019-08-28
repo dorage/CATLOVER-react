@@ -11,6 +11,7 @@ const GlobalStyles = createGlobalStyle`
         margin-top:${cssVar.headerH};
         overflow-x:hidden;
         background-color:${cssVar.charcoal};
+        font-family: 'Oswald', sans-serif;
     }
 `;
 export default GlobalStyles;
