@@ -3,7 +3,7 @@ import LikeButtonPresenter from './LikeButtonPresenter';
 import { serverApi } from '../../api';
 
 export default class extends React.Component {
-    state = { isLike: false, error: false };
+    state = { like: 0, isLike: false, error: false };
 
     componentDidUpdate = async () => {
         const { type, id, tokenId } = this.props;
@@ -32,7 +32,10 @@ export default class extends React.Component {
             } else if (type === 'girl') {
                 results = await serverApi.postGirlLike(id, tokenId);
             }
-            this.setState({ isLike: results.data.isLike });
+            this.setState({
+                like: results.data.like,
+                isLike: results.data.isLike
+            });
         } catch (e) {
             this.setState({ error: true });
         }

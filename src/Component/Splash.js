@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Ranking from './Ranking';
-import { cssVar } from '../vars';
+import { Assets } from '../vars';
+import Tags from './Tags';
 
 const Container = styled.div`
     display: flex;
@@ -36,46 +37,37 @@ const Title = styled.img`
     width: auto;
 `;
 
-const SearchContainer = styled.div`
-    width: 100%;
-    height: 25%;
-`;
-const Form = styled.form`
+const TagContainer = styled.div`
     display: flex;
-    vertical-align: center;
-    align-content: center;
+    height: 25%;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 `;
-const SearchBar = styled.input`
-    display: block;
-    width: 60%;
-    height: 30px;
-    margin: 0 auto;
-    margin-top: 30px;
-    color: ${cssVar.white};
-    padding-left: 10px;
-    padding-right: 10px;
-    border-style: solid;
-    border-color: ${cssVar.gold};
-    background-color: rgb(80, 80, 80);
-    background-color: ${cssVar.charcoal};
+const TagContainerMiddle = styled.div`
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 50%;
 `;
+
 const MenuContainer = styled.div`
     width: 100%;
     height: 25%;
 `;
 
-const Splash = () => (
+const Splash = ({ tags, loading }) => (
     <Container>
         <ManipulateContainer>
             <LogoContainer>
-                <Title src="https://lovethereum-local.s3.ap-northeast-2.amazonaws.com/splash-logo-white.png"></Title>
+                <Title src={Assets.imgHottieLogo}></Title>
             </LogoContainer>
-            <SearchContainer>
-                <Form>
-                    <SearchBar placeholder="  search term..." />
-                </Form>
-            </SearchContainer>
+            <TagContainer>
+                <TagContainerMiddle>
+                    {loading ? <></> : <Tags tags={tags} />}
+                </TagContainerMiddle>
+            </TagContainer>
             <MenuContainer></MenuContainer>
         </ManipulateContainer>
         <RankingContainer>

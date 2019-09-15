@@ -39,8 +39,7 @@ const SubImage = styled.div`
     background-position: center;
     margin: 10px;
     outline: ${props =>
-        props.index === props.selection ? 'solid 2px' : 'none'};
-    box-shadow: 1px 2px ${cssVar.gold};
+        props.index === props.selection ? 'solid 3px' : 'none'};
     outline-color: ${cssVar.gold};
     cursor: pointer;
 `;

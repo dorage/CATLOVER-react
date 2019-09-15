@@ -1,16 +1,19 @@
 import React from 'react';
-import GirlPresenter from './GirlPresenter';
+import TagPresenter from './TagPresenter';
 import { serverApi } from '../../api';
 
 export default class extends React.Component {
     state = {
-        id: '',
+        name: '',
+        page: 0,
+        pics: 20,
         results: null,
+        endOfResults: false,
         loading: true,
         error: false
     };
 
-    handleScroll = async () => {
+    handleScroll = () => {
         // 스크롤 끝인식
         if (
             window.innerHeight + document.documentElement.scrollTop !==
@@ -19,38 +22,25 @@ export default class extends React.Component {
             console.log('scroll!');
             return;
         }
-
-        const {
-            match: {
-                params: { id }
-            }
-        } = this.props;
-        try {
-            const {
-                data: { results }
-            } = await serverApi.girlDetail(id, 2);
-            console.log(results);
-            this.setState({ results });
-        } catch (e) {
-            console.log(e);
-            this.setState({ error: true });
-        }
+        const { pics, page } = this.state;
+        // fetch from api server
+        // set results in state
+        this.setState({ pics: pics + 20, page: page + 1 });
         console.log('end of page');
     };
 
     async componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
-        const {
-            match: {
-                params: { id }
-            }
-        } = this.props;
         try {
             const {
+                match: {
+                    params: { id: name }
+                }
+            } = this.props;
+            const {
                 data: { results }
-            } = await serverApi.girlDetail(id);
-            console.log(results);
-            this.setState({ id, results, loading: false });
+            } = await serverApi.getTagDetail(name);
+            this.setState({ name, results, loading: false });
         } catch (e) {
             console.log(e);
             this.setState({ error: true });
@@ -58,13 +48,15 @@ export default class extends React.Component {
     }
 
     render() {
-        const { id, results, loading, error } = this.state;
+        const { name, page, pics, results, endOfResults, loading } = this.state;
         return (
-            <GirlPresenter
-                id={id}
+            <TagPresenter
+                name={name}
+                page={page}
+                pics={pics}
                 results={results}
+                endOfResults={endOfResults}
                 loading={loading}
-                error={error}
             />
         );
     }

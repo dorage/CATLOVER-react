@@ -4,7 +4,8 @@ import { serverApi } from '../../api';
 
 export default class extends React.Component {
     state = {
-        top20: null,
+        todayPick: null,
+        tags: null,
         error: false,
         loading: true
     };
@@ -13,10 +14,16 @@ export default class extends React.Component {
         try {
             const {
                 data: {
-                    results: { top20 }
+                    results: { todayPick }
                 }
-            } = await serverApi.top20();
-            this.setState({ top20, loading: false });
+            } = await serverApi.todayPick();
+
+            const {
+                data: {
+                    results: { tags }
+                }
+            } = await serverApi.tags();
+            this.setState({ todayPick, tags, loading: false });
         } catch (e) {
             console.log(e);
             this.setState({ error: true });
@@ -24,9 +31,14 @@ export default class extends React.Component {
     }
 
     render() {
-        const { top20, loading, error } = this.state;
+        const { todayPick, tags, loading, error } = this.state;
         return (
-            <GalleryPresenter top20={top20} loading={loading} error={error} />
+            <GalleryPresenter
+                todayPick={todayPick}
+                tags={tags}
+                loading={loading}
+                error={error}
+            />
         );
     }
 }

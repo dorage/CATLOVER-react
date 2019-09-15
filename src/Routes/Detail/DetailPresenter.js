@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import ImageViewer from '../../Component/ImageViewer';
 import LikeButton from '../../Component/LikeButton';
+import InstaLink from '../../Component/InstaLink';
 import Tags from '../../Component/Tags';
 import { cssVar } from '../../vars';
 
@@ -36,8 +38,8 @@ const Profile = styled.div`
     background: url(${props => props.bgUrl});
     background-position: center;
     background-size: contain;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
 `;
 const ProfileLink = styled.a`
@@ -45,7 +47,7 @@ const ProfileLink = styled.a`
     width: 100%;
     height: 100%;
 `;
-const Nickname = styled.a`
+const Nickname = styled(Link)`
     color: ${cssVar.white};
     font-size: 30px;
     font-weight: 700;
@@ -62,18 +64,8 @@ const PostInfo = styled.div`
     flex-direction: column;
     align-items: center;
 `;
-const RealtedContainer = styled.div`
-    width: 100%;
-    height: 50%;
-    font-size: 30px;
-    font-weight: 600;
-    margin-top: ${cssVar.headerH};
-    color: ${cssVar.white};
-    display: flex;
-`;
-const RelatedInfo = styled.div``;
 
-export default ({ id, results, loading, error }) => (
+const DetailPresenter = ({ id, results, loading, error }) => (
     <Container>
         {loading ? (
             'Loading'
@@ -81,19 +73,18 @@ export default ({ id, results, loading, error }) => (
             <>
                 <PostContainer>
                     <ImageBox>
+                        <InstaLink link={results.post.link} />
                         <ImageViewer post={results.post} />
                     </ImageBox>
                     <PostBox>
                         <InstagramInfo>
-                            <Profile bgUrl={results.post.images[0]}>
+                            <Profile bgUrl={results.instagram.profile}>
                                 <ProfileLink
                                     href={`http://localhost:3000/girl/${results.girl._id}`}
                                 />
                             </Profile>
-                            <Nickname
-                                href={`http://localhost:3000/girl/${results.girl._id}`}
-                            >
-                                {results.instagram.id}
+                            <Nickname to={`/girl/${results.girl._id}`}>
+                                {results.girl.name}
                             </Nickname>
                             <Line />
                         </InstagramInfo>
@@ -103,11 +94,9 @@ export default ({ id, results, loading, error }) => (
                         </PostInfo>
                     </PostBox>
                 </PostContainer>
-                <RealtedContainer>
-                    Related
-                    <RelatedInfo />
-                </RealtedContainer>
             </>
         )}
     </Container>
 );
+
+export default withRouter(DetailPresenter);

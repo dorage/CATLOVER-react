@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { cssVar } from '../../vars';
 
@@ -48,15 +49,26 @@ const RankBox = styled.div`
 const Rank = styled.div`
     width: 10%;
 `;
-const Name = styled.div`
+const NameTitle = styled.div`
     width: 80%;
+`;
+const Name = styled(Link)`
+    width: 80%;
+    color: white;
+    text-decoration: none;
 `;
 const Likes = styled.div`
     width: 10%;
 `;
 
 // component 형식으로 나누기
-export default ({ girlRank, results, loading, error, isGirlRank }) => (
+const RankingPresenter = ({
+    girlRank,
+    results,
+    loading,
+    error,
+    isGirlRank
+}) => (
     <Container>
         <CategoryContainer>
             <Category girlRank={girlRank} onClick={() => isGirlRank(false)}>
@@ -67,52 +79,55 @@ export default ({ girlRank, results, loading, error, isGirlRank }) => (
             </Category>
         </CategoryContainer>
         {girlRank ? (
+            // Girl Ranking
             <RankContainer>
                 <RankBox>
                     <Rank>RANK</Rank>
-                    <Name>NAME</Name>
+                    <NameTitle>NAME</NameTitle>
                     <Likes>LIKES</Likes>
                 </RankBox>
                 {loading
                     ? Array(10).map((elem, index) => (
-                        <RankBox>
-                            <Rank>{index}</Rank>
-                            <Name>loading</Name>
-                            <Likes>0</Likes>
-                        </RankBox>
-                    ))
+                          <RankBox>
+                              <Rank>{index}</Rank>
+                              <Name>loading</Name>
+                              <Likes>0</Likes>
+                          </RankBox>
+                      ))
                     : results.girl.map((elem, index) => (
-                        <RankBox key={elem._id}>
-                            <Rank>{index + 1}</Rank>
-                            <Name>{elem.name}</Name>
-                            <Likes>{elem.like}</Likes>
-                        </RankBox>
-                    ))}
+                          <RankBox key={elem._id}>
+                              <Rank>{index + 1}</Rank>
+                              <Name to={`/girl/${elem._id}`}>{elem.name}</Name>
+                              <Likes>{elem.like}</Likes>
+                          </RankBox>
+                      ))}
             </RankContainer>
         ) : (
             // Post Ranking
             <RankContainer>
                 <RankBox>
                     <Rank>RANK</Rank>
-                    <Name>LINK</Name>
+                    <NameTitle>LINK</NameTitle>
                     <Likes>LIKES</Likes>
                 </RankBox>
                 {loading
                     ? Array(10).map((elem, index) => (
-                        <RankBox>
-                            <Rank>{index}</Rank>
-                            <Name>loading</Name>
-                            <Likes>0</Likes>
-                        </RankBox>
-                    ))
+                          <RankBox>
+                              <Rank>{index}</Rank>
+                              <Name>loading</Name>
+                              <Likes>0</Likes>
+                          </RankBox>
+                      ))
                     : results.post.map((elem, index) => (
-                        <RankBox key={elem._id}>
-                            <Rank>{index + 1}</Rank>
-                            <Name>{elem.link}</Name>
-                            <Likes>{elem.like}</Likes>
-                        </RankBox>
-                    ))}
+                          <RankBox key={elem._id}>
+                              <Rank>{index + 1}</Rank>
+                              <Name to={`/post/${elem._id}`}>{elem.link}</Name>
+                              <Likes>{elem.like}</Likes>
+                          </RankBox>
+                      ))}
             </RankContainer>
         )}
     </Container>
 );
+
+export default withRouter(RankingPresenter);

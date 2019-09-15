@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div``;
@@ -11,17 +12,17 @@ const Image = styled.div`
     background-size: cover;
 `;
 
-const Link = styled.a`
+const SLink = styled(Link)`
     width: 100%;
     height: 100%;
 `;
 
 const Poster = ({ id, src }) => (
     <Container>
-        <Link href={`http://localhost:3000/post/${id}`}>
+        <SLink to={`/post/${id}`}>
             <Image src={src} />
-        </Link>
+        </SLink>
     </Container>
 );
 
-export default Poster;
+export default withRouter(Poster);

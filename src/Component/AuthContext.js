@@ -1,5 +1,4 @@
 import React, { createContext } from 'react';
-import { userInfo } from 'os';
 import { serverApi } from '../api';
 
 const { Provider, Consumer: AuthConsumer } = createContext();

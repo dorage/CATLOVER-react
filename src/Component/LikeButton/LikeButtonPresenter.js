@@ -17,10 +17,9 @@ const LikeButton = styled.button`
     width: 60px;
     height: 40px;
     font-size: 20px;
-    color: ${props => (props.isLike ? cssVar.purple : cssVar.white)};
+    color: ${props => (props.isLike ? cssVar.gold : cssVar.white)};
     background-color: ${cssVar.black};
-    box-shadow: 1px 2px
-        ${props => (props.isLike ? cssVar.purple : cssVar.white)};
+    box-shadow: 1px 2px ${props => (props.isLike ? cssVar.gold : cssVar.white)};
     border: solid 1px;
     cursor: pointer;
     :hover {

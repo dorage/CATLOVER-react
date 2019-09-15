@@ -5,7 +5,10 @@ const api = axios.create({
 });
 
 export const serverApi = {
-    top20: () => api.get('top20'),
+    todayPick: () => api.get('todaypick'),
+    // tag
+    tags: () => api.get(`tags`),
+    getTagDetail: name => api.get(`tags/${name}`),
     // like
     postPostLike: (postId, tokenId) =>
         api.post(
@@ -32,18 +35,13 @@ export const serverApi = {
             params: { tokenId }
         }),
     // detail
-    postDetail: (postId, tokenId = '') =>
-        api.get(`post/${postId}`, {
-            params: { tokenId }
-        }),
-    girlDetail: (girlId, tokenId = '') =>
+    postDetail: postId => api.get(`post/${postId}`),
+    girlDetail: (girlId, page = -1) =>
         api.get(`girl/${girlId}`, {
-            params: { tokenId }
+            params: { page }
         }),
     // rank
     totalRank: () => api.get('total/rank'),
-    postRank: () => api.get('post/rank'),
-    girlRank: async () => api.get('girl/rank'),
     // auth
     auth: tokenId =>
         api.get(`auth/validate`, {

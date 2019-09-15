@@ -24,13 +24,13 @@ const Link = styled.a`
 `;
 
 export default props => {
-    const { mark, instagram } = props;
+    const { mark, link } = props;
     return (
         <Container>
             <Instagram />
             <InstagramLink>
-                <Link href={`http://www.instagram.com/${instagram.id}`}>
-                    {`${mark || ''}${instagram.id}`}
+                <Link href={`http://www.instagram.com/${link}`}>
+                    {mark ? `${mark || ''}${link}` : `${link}`}
                 </Link>
             </InstagramLink>
         </Container>
