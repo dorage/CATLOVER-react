@@ -5,6 +5,7 @@ import { serverApi } from '../../api';
 export default class extends React.Component {
     state = {
         id: '',
+        page: 1,
         results: null,
         loading: true,
         error: false
@@ -16,7 +17,6 @@ export default class extends React.Component {
             window.innerHeight + document.documentElement.scrollTop !==
             document.documentElement.offsetHeight
         ) {
-            console.log('scroll!');
             return;
         }
 
@@ -25,17 +25,24 @@ export default class extends React.Component {
                 params: { id }
             }
         } = this.props;
+        const { results, page } = this.state;
+
         try {
             const {
-                data: { results }
-            } = await serverApi.girlDetail(id, 2);
-            console.log(results);
-            this.setState({ results });
+                data: { results: newResults, endOfPage }
+            } = await serverApi.girlDetail(id, page + 1);
+            // 더이상 불러올게 없을때
+            if (endOfPage) {
+                console.log(endOfPage);
+                return;
+            }
+            const concatResults = results.post.concat(newResults.post);
+            results.post = concatResults;
+            this.setState({ results, page: page + 1 });
         } catch (e) {
             console.log(e);
             this.setState({ error: true });
         }
-        console.log('end of page');
     };
 
     async componentDidMount() {

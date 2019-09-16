@@ -5,15 +5,13 @@ import { serverApi } from '../../api';
 export default class extends React.Component {
     state = {
         name: '',
-        page: 0,
-        pics: 20,
+        page: 1,
         results: null,
-        endOfResults: false,
         loading: true,
         error: false
     };
 
-    handleScroll = () => {
+    handleScroll = async () => {
         // 스크롤 끝인식
         if (
             window.innerHeight + document.documentElement.scrollTop !==
@@ -22,11 +20,26 @@ export default class extends React.Component {
             console.log('scroll!');
             return;
         }
-        const { pics, page } = this.state;
-        // fetch from api server
-        // set results in state
-        this.setState({ pics: pics + 20, page: page + 1 });
-        console.log('end of page');
+
+        const { name, results, page } = this.state;
+
+        try {
+            const {
+                data: { results: newResults, endOfPage }
+            } = await serverApi.getTagDetail(name, page + 1);
+            console.log(newResults);
+            // 더이상 불러올게 없을때
+            if (endOfPage) {
+                console.log(endOfPage);
+                return;
+            }
+            const concatResults = results.posts.concat(newResults.posts);
+            results.posts = concatResults;
+            this.setState({ results, page: page + 1 });
+        } catch (e) {
+            console.log(e);
+            this.setState({ error: true });
+        }
     };
 
     async componentDidMount() {
