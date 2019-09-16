@@ -8,7 +8,8 @@ export const serverApi = {
     todayPick: () => api.get('todaypick'),
     // tag
     tags: () => api.get(`tags`),
-    getTagDetail: name => api.get(`tags/${name}`),
+    getTagDetail: (name, page = -1) =>
+        api.get(`tags/${name}`, { params: { page } }),
     // like
     postPostLike: (postId, tokenId) =>
         api.post(

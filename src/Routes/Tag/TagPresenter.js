@@ -42,9 +42,9 @@ const TagPresent = ({ name, page, pics, results, endOfResults, loading }) => (
             {loading ? (
                 <></>
             ) : (
-                results.posts.map(element => (
-                    <SLink to={`/post/${element._id}`}>
-                        <Post src={element.images[0]} />
+                results.posts.map(elem => (
+                    <SLink key={elem._id} to={`/post/${elem._id}`}>
+                        <Post key={elem._id} src={elem.images[0]} />
                     </SLink>
                 ))
             )}
