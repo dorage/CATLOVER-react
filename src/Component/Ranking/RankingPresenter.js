@@ -97,7 +97,7 @@ const RankingPresenter = ({
                     : results.girl.map((elem, index) => (
                           <RankBox key={elem._id}>
                               <Rank>{index + 1}</Rank>
-                              <Name to={`/girl/${elem._id}`}>{elem.name}</Name>
+                              <Name to={`/cat/${elem._id}`}>{elem.name}</Name>
                               <Likes>{elem.like}</Likes>
                           </RankBox>
                       ))}

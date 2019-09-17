@@ -42,12 +42,10 @@ const Profile = styled.div`
     height: 150px;
     border-radius: 50%;
 `;
-const ProfileLink = styled.a`
-    display: block;
-    width: 100%;
-    height: 100%;
+const SLINK = styled(Link)`
+    text-decoration: none;
 `;
-const Nickname = styled(Link)`
+const Nickname = styled.p`
     color: ${cssVar.white};
     font-size: 30px;
     font-weight: 700;
@@ -78,14 +76,12 @@ const DetailPresenter = ({ id, results, loading, error }) => (
                     </ImageBox>
                     <PostBox>
                         <InstagramInfo>
-                            <Profile bgUrl={results.instagram.profile}>
-                                <ProfileLink
-                                    href={`http://localhost:3000/girl/${results.girl._id}`}
-                                />
-                            </Profile>
-                            <Nickname to={`/girl/${results.girl._id}`}>
-                                {results.girl.name}
-                            </Nickname>
+                            <SLINK to={`/cat/${results.girl._id}`}>
+                                <Profile bgUrl={results.instagram.profile} />
+                            </SLINK>
+                            <SLINK to={`/cat/${results.girl._id}`}>
+                                <Nickname>{results.girl.name}</Nickname>
+                            </SLINK>
                             <Line />
                         </InstagramInfo>
                         <PostInfo>

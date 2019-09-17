@@ -15,7 +15,7 @@ export default () => (
         <Switch>
             <Route path="/" exact component={Gallery} />
             <Route path="/post/:id" exact component={Detail} />
-            <Route path="/girl/:id" exact component={Girl} />
+            <Route path="/cat/:id" exact component={Girl} />
             <Route path="/tag/:id" exact component={Tag} />
             <Redirect from="*" to="/" />
         </Switch>
