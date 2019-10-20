@@ -4,6 +4,7 @@ import { cssVar, Assets } from '../vars';
 import GoogleAuth from './GoogleAuth';
 import GoogleLoginButton from './GoogleLoginButton';
 import AuthContext from './AuthContext';
+import FBLogin from './FacebookLogin';
 
 const Container = styled.div`
     position: relative;
@@ -59,6 +60,7 @@ const Name = styled.div`
 
 const Header = () => (
     <Container>
+        <FBLogin />
         <UserMenu>
             <AuthContext.AuthConsumer>
                 {({ state }) =>
