@@ -1,19 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 import { API_URL } from '../config';
+import { cssVar } from '../vars';
 
 const Container = styled.div`
-    margin: 20px;
-    width: 250px;
-    height: 250px;
-`;
-const SigninBox = styled.div`
     width: 100%;
     height: 100%;
 `;
+const SigninBox = styled.div``;
 const Button = styled.button`
-    width: 100%;
-    height: 100%;
+    width: 60%;
+    height: 40px;
+    font-size: 18px;
+    background-color: ${cssVar.charcoal};
+    color: ${cssVar.white};
+    box-shadow: 1px 2px ${cssVar.white};
+    margin: 20px;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    :hover {
+        background-color: ${cssVar.black};
+        color: ${cssVar.purple};
+        box-shadow: 1px 2px ${cssVar.purple};
+    }
 `;
 
 class OAuth extends React.Component {
@@ -30,7 +43,6 @@ class OAuth extends React.Component {
         const { socket, provider } = this.props;
 
         socket.on(provider, user => {
-            console.log('get!');
             this.popup.close();
             this.setState({ user });
         });
@@ -88,12 +100,12 @@ class OAuth extends React.Component {
                     <SigninBox>
                         <img src={photo} alt={name} />
                         <div onClick={this.closeCard}>x</div>
-                        <h4>{name}</h4>
+                        <h4>{`sign in with ${name}`}</h4>
                     </SigninBox>
                 ) : (
                     <SigninBox>
                         <Button type="submit" onClick={this.startAuth}>
-                            {provider}
+                            {`Sign in with ${provider}`}
                         </Button>
                     </SigninBox>
                 )}

@@ -5,6 +5,7 @@ import GoogleAuth from './GoogleAuth';
 import GoogleLoginButton from './GoogleLoginButton';
 import AuthContext from './AuthContext';
 import FBLogin from './FacebookLogin';
+import SignInModal from './Modals/SigninModal';
 
 const Container = styled.div`
     position: relative;
@@ -60,6 +61,7 @@ const Name = styled.div`
 
 const Header = () => (
     <Container>
+        <SignInModal />
         <FBLogin />
         <UserMenu>
             <AuthContext.AuthConsumer>
