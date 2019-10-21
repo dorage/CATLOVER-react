@@ -4,7 +4,7 @@ import { cssVar } from '../../vars';
 
 const Container = styled.div`
     position: fixed;
-    display: ${props => `${props.display ? 'block' : 'none'}`};
+    display: 'block';
     z-index: 999;
     left: 0;
     top: 0;
@@ -37,33 +37,18 @@ const CloseButton = styled.button`
     cursor: pointer;
 `;
 
-class Modal extends React.Component {
-    constructor(props) {
-        super(props);
-        const { display } = this.props;
-        this.state = { display };
-    }
-
-    onClickExitButton = () => {
-        this.setState({ display: false });
-    };
-
-    render() {
-        const { display } = this.state;
-        const { children } = this.props;
-        return (
-            <Container display={display}>
-                <Window>
-                    <ControlSection>
-                        <CloseButton onClick={this.onClickExitButton}>
-                            X
-                        </CloseButton>
-                    </ControlSection>
-                    <ContentSection>{children}</ContentSection>
-                </Window>
-            </Container>
-        );
-    }
-}
+const Modal = props => {
+    const { closeModal, children } = props;
+    return (
+        <Container>
+            <Window>
+                <ControlSection>
+                    <CloseButton onClick={closeModal}>X</CloseButton>
+                </ControlSection>
+                <ContentSection>{children}</ContentSection>
+            </Window>
+        </Container>
+    );
+};
 
 export default Modal;

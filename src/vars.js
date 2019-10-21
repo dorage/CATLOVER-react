@@ -2,12 +2,14 @@ import imgNoImage from './Assets/noimage.png';
 import imgInstagramIcon from './Assets/instagram.png';
 import imgHottieLogo from './Assets/splash-logo-white.png';
 import imgGoogleLogo from './Assets/google-logo.png';
+import imgFacebookLogo from './Assets/facebook-logo.png';
 
 export const Assets = {
     imgNoImage,
     imgInstagramIcon,
     imgHottieLogo,
-    imgGoogleLogo
+    google: imgGoogleLogo,
+    facebook: imgFacebookLogo
 };
 
 const black = `#0E0F11`; // 헤더색상

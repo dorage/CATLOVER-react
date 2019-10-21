@@ -1,40 +1,36 @@
 import React, { createContext } from 'react';
-import { serverApi } from '../api';
 
 const { Provider, Consumer: AuthConsumer } = createContext();
 
 class AuthProvider extends React.Component {
     state = {
-        tokenId: '',
-        results: null
+        user: {}
     };
 
     actions = {
-        onSuccess: async response => {
-            const { id_token: tokenId } = response.getAuthResponse();
-            console.log(tokenId);
-            const {
-                data: { results }
-            } = await serverApi.login(tokenId);
-            localStorage.setItem('tokenId', tokenId);
-            this.setState({ tokenId, results });
+        onSignIn: user => {
+            localStorage.setItem('user', JSON.stringify(user));
+            this.setState({ user });
+            window.location.reload();
         },
-        onFailure: response => {}
+        onSignOut: () => {
+            console.log('logout');
+            localStorage.removeItem('user');
+            this.setState({ user: {} });
+        }
     };
 
-    // 새 페이지 불러올때마다 로컬스토리지에서 가져오기 -> 가져와서 확인하기
-    // 틀리면 삭제하기
-    async componentDidMount() {
+    // 로그인 체크
+    componentWillMount() {
         try {
-            const tokenId = localStorage.getItem('tokenId');
-            if (tokenId) {
-                const {
-                    data: { results }
-                } = await serverApi.auth(tokenId);
-                if (tokenId) this.setState({ tokenId, results });
-            }
+            const user =
+                localStorage.getItem('user') === null
+                    ? {}
+                    : JSON.parse(localStorage.getItem('user'));
+            this.setState({ user });
+            console.log(user);
         } catch (e) {
-            localStorage.removeItem('tokenId');
+            localStorage.removeItem('user');
         }
     }
 

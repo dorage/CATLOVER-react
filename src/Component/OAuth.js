@@ -1,14 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import { API_URL } from '../config';
-import { cssVar } from '../vars';
+import { cssVar, Assets } from '../vars';
+import AuthContext from './AuthContext';
 
 const Container = styled.div`
     width: 100%;
     height: 100%;
 `;
-const SigninBox = styled.div``;
+const SigninBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
 const Button = styled.button`
+    display: flex;
     width: 60%;
     height: 40px;
     font-size: 18px;
@@ -19,8 +26,6 @@ const Button = styled.button`
     border: solid 1px;
     border-radius: 5px;
     padding: 5px 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     cursor: pointer;
     :hover {
         background-color: ${cssVar.black};
@@ -28,23 +33,29 @@ const Button = styled.button`
         box-shadow: 1px 2px ${cssVar.purple};
     }
 `;
+const LogoSection = styled.div`
+    width: 30%;
+`;
+const Logo = styled.img`
+    height: 20px;
+`;
+const TextSection = styled.div`
+    text-align: left;
+    width: 70%;
+`;
 
 class OAuth extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            user: {},
-            disabled: ''
-        };
-    }
+    state = {
+        disabled: ''
+    };
 
     componentDidMount() {
-        const { socket, provider } = this.props;
+        const { socket, provider, onSignIn } = this.props;
 
         socket.on(provider, user => {
             this.popup.close();
-            this.setState({ user });
+            console.log(user);
+            onSignIn(user);
         });
     }
 
@@ -85,33 +96,21 @@ class OAuth extends React.Component {
         }
     };
 
-    closeCard = () => {
-        this.state({ user: {} });
-    };
-
     render() {
         const { provider } = this.props;
-        const {
-            user: { name, photo }
-        } = this.state;
         return (
             <Container>
-                {name ? (
-                    <SigninBox>
-                        <img src={photo} alt={name} />
-                        <div onClick={this.closeCard}>x</div>
-                        <h4>{`sign in with ${name}`}</h4>
-                    </SigninBox>
-                ) : (
-                    <SigninBox>
-                        <Button type="submit" onClick={this.startAuth}>
-                            {`Sign in with ${provider}`}
-                        </Button>
-                    </SigninBox>
-                )}
+                <SigninBox>
+                    <Button type="submit" onClick={this.startAuth}>
+                        <LogoSection>
+                            <Logo src={Assets[provider]} />
+                        </LogoSection>
+                        <TextSection>{`Sign in with ${provider}`}</TextSection>
+                    </Button>
+                </SigninBox>
             </Container>
         );
     }
 }
 
-export default OAuth;
+export default AuthContext.HoCAuth(OAuth);

@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { cssVar, Assets } from '../vars';
-import GoogleAuth from './GoogleAuth';
-import GoogleLoginButton from './GoogleLoginButton';
-import AuthContext from './AuthContext';
-import FBLogin from './FacebookLogin';
 import SignInModal from './Modals/SigninModal';
 
 const Container = styled.div`
@@ -35,21 +31,6 @@ const Home = styled.div`
     color: white;
 `;
 
-const UserMenu = styled.div`
-    display: flex;
-    text-align: center;
-    font-size: 24px;
-    height: 100%;
-    margin-right: 30px;
-`;
-const AccountContainer = styled.div`
-    display: flex;
-    color: ${cssVar.gold};
-    height: 50px;
-    font-size: 20px;
-    align-items: center;
-    justify-content: center;
-`;
 const Greeting = styled.div`
     color: ${cssVar.white};
     height: 100%;
@@ -62,23 +43,6 @@ const Name = styled.div`
 const Header = () => (
     <Container>
         <SignInModal />
-        <FBLogin />
-        <UserMenu>
-            <AuthContext.AuthConsumer>
-                {({ state }) =>
-                    state.tokenId ? (
-                        <AccountContainer>
-                            <Greeting>
-                                Hello,
-                                <Name> {state.results.user.name}</Name>
-                            </Greeting>
-                        </AccountContainer>
-                    ) : (
-                        <GoogleAuth renderer={GoogleLoginButton} />
-                    )
-                }
-            </AuthContext.AuthConsumer>
-        </UserMenu>
         <Link href="/">
             <Home />
         </Link>

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import GoogleAuth from '../GoogleAuth';
 import { cssVar } from '../../vars';
 
 const Container = styled.div`
@@ -47,7 +46,9 @@ export default ({ like, tokenId, isLike, setLike }) => {
                     ❤
                 </LikeButton>
             ) : (
-                <GoogleAuth renderer={LoginLikeButton} />
+                <LikeButton onClick={setLike} isLike={isLike}>
+                    ❤
+                </LikeButton>
             )}
         </Container>
     );
