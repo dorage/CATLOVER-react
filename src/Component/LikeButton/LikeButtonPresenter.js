@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { cssVar } from '../../vars';
+import AuthContext from '../AuthContext';
+import SignInModal from '../Modals/SigninModal';
 
 const Container = styled.div`
     display: flex;
@@ -31,25 +33,30 @@ const LikeButton = styled.button`
     }
 `;
 
-const LoginLikeButton = renderProps => (
-    <Container onClick={renderProps.onClick} disabled={renderProps.disabled}>
-        <LikeButton>❤</LikeButton>
-    </Container>
-);
+const SignInLikeButton = props => {
+    const { showModal } = props;
+    return <LikeButton onClick={showModal}>❤</LikeButton>;
+};
 
-export default ({ like, tokenId, isLike, setLike }) => {
+export default ({ like, isLike, setLike }) => {
     return (
         <Container>
             <LikeCounter>❤ {like || 0}</LikeCounter>
-            {tokenId ? (
-                <LikeButton onClick={setLike} isLike={isLike}>
-                    ❤
-                </LikeButton>
-            ) : (
-                <LikeButton onClick={setLike} isLike={isLike}>
-                    ❤
-                </LikeButton>
-            )}
+            <AuthContext.AuthConsumer>
+                {({ state }) =>
+                    state.user.id ? (
+                        <LikeButton onClick={setLike} isLike={isLike}>
+                            ❤
+                        </LikeButton>
+                    ) : (
+                        <SignInModal
+                            signIn={modalActions => (
+                                <SignInLikeButton {...modalActions} />
+                            )}
+                        />
+                    )
+                }
+            </AuthContext.AuthConsumer>
         </Container>
     );
 };

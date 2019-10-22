@@ -15,23 +15,6 @@ const Container = styled.div`
     color: ${cssVar.white};
 `;
 
-const SignInOutButton = styled.button`
-    display: flex;
-    background-color: ${cssVar.black};
-    height: 100%;
-    border: none;
-    color: ${cssVar.white};
-    cursor: pointer;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-right: 50px;
-    font-size: 24px;
-    font-weight: 600;
-    :hover {
-        background-color: ${cssVar.purple};
-    }
-`;
-
 const ChildrenContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -45,42 +28,30 @@ const Title = styled.div`
 `;
 
 class SignInModal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            display: false
-        };
-    }
-
-    showModal = () => {
-        this.setState({ display: true });
+    state = {
+        display: false
     };
 
-    closeModal = () => {
-        this.setState({ display: false });
+    actions = {
+        showModal: () => {
+            console.log('open');
+            this.setState({ display: true });
+        },
+        closeModal: () => {
+            console.log('close');
+            this.setState({ display: false });
+        }
     };
 
     render() {
         const { display } = this.state;
+        const { showModal, closeModal } = this.actions;
+        const { signIn } = this.props;
         return (
             <Container>
-                <AuthContext.AuthConsumer>
-                    {({ state, actions }) =>
-                        !state.user.id ? (
-                            // sign in
-                            <SignInOutButton onClick={this.showModal}>
-                                sign in with sns
-                            </SignInOutButton>
-                        ) : (
-                            // sign out
-                            <SignInOutButton onClick={actions.onSignOut}>
-                                Sign Out
-                            </SignInOutButton>
-                        )
-                    }
-                </AuthContext.AuthConsumer>
+                {signIn && signIn({ showModal })}
                 {display && (
-                    <Modal closeModal={this.closeModal}>
+                    <Modal closeModal={closeModal}>
                         <ChildrenContainer>
                             <Title>Sign In</Title>
                             {providers.map(provider => (
