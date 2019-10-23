@@ -6,13 +6,13 @@ export default class extends React.Component {
     state = { like: 0, isLike: false, error: false };
 
     componentDidUpdate = async () => {
-        const { type, id, tokenId } = this.props;
+        const { type, id, user } = this.props;
         try {
             let results;
             if (type === 'post') {
-                results = await serverApi.getPostLike(id, tokenId);
+                results = await serverApi.getPostLike(id, user.id);
             } else if (type === 'girl') {
-                results = await serverApi.getGirlLike(id, tokenId);
+                results = await serverApi.getGirlLike(id, user.id);
             }
             this.setState({
                 like: results.data.like,
@@ -24,13 +24,13 @@ export default class extends React.Component {
     };
 
     setLike = async () => {
-        const { type, id, tokenId } = this.props;
+        const { type, id, user } = this.props;
         try {
             let results;
             if (type === 'post') {
-                results = await serverApi.postPostLike(id, tokenId);
+                results = await serverApi.postPostLike(id, user.id);
             } else if (type === 'girl') {
-                results = await serverApi.postGirlLike(id, tokenId);
+                results = await serverApi.postGirlLike(id, user.id);
             }
             this.setState({
                 like: results.data.like,
@@ -43,11 +43,11 @@ export default class extends React.Component {
 
     render() {
         const { like, isLike } = this.state;
-        const { tokenId } = this.props;
+        const { user } = this.props;
         return (
             <LikeButtonPresenter
                 like={like}
-                tokenId={tokenId}
+                user={user}
                 isLike={isLike}
                 setLike={this.setLike}
             />

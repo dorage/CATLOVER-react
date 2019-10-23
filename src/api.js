@@ -1,11 +1,8 @@
 import axios from 'axios';
+import { API_URL } from './config';
 
 const api = axios.create({
-    baseURL: `${
-        process.env.REACT_APP_MODE === 'production'
-            ? process.env.REACT_APP_API_URL
-            : 'http://localhost:4000/api'
-    }/api/`
+    baseURL: `${API_URL}/api/`
 });
 
 export const serverApi = {
@@ -15,29 +12,29 @@ export const serverApi = {
     getTagDetail: (name, page = -1) =>
         api.get(`tags/${name}`, { params: { page } }),
     // like
-    postPostLike: (postId, tokenId) =>
+    postPostLike: (postId, userId) =>
         api.post(
             `post/${postId}/like`,
             {},
             {
-                params: { tokenId }
+                params: { userId }
             }
         ),
-    postGirlLike: (girlId, tokenId) =>
+    postGirlLike: (girlId, userId) =>
         api.post(
             `girl/${girlId}/like`,
             {},
             {
-                params: { tokenId }
+                params: { userId }
             }
         ),
-    getPostLike: (postId, tokenId) =>
+    getPostLike: (postId, userId) =>
         api.get(`post/${postId}/like`, {
-            params: { tokenId }
+            params: { userId }
         }),
-    getGirlLike: (girlId, tokenId) =>
+    getGirlLike: (girlId, userId) =>
         api.get(`girl/${girlId}/like`, {
-            params: { tokenId }
+            params: { userId }
         }),
     // detail
     postDetail: postId => api.get(`post/${postId}`),
@@ -46,13 +43,7 @@ export const serverApi = {
             params: { page }
         }),
     // rank
-    totalRank: () => api.get('total/rank'),
-    // auth
-    auth: tokenId =>
-        api.get(`auth/validate`, {
-            params: { tokenId }
-        }),
-    login: tokenId => api.post(`auth/login`, { tokenId })
+    totalRank: () => api.get('total/rank')
 };
 
 export const nothing = null;

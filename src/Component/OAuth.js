@@ -33,6 +33,25 @@ const Button = styled.button`
         box-shadow: 1px 2px ${cssVar.purple};
     }
 `;
+const NoneClickable = styled.button`
+    display: flex;
+    width: 60%;
+    height: 40px;
+    font-size: 18px;
+    background-color: ${cssVar.charcoal};
+    color: ${cssVar.white};
+    box-shadow: 1px 2px ${cssVar.white};
+    margin: 20px;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    :hover {
+        background-color: ${cssVar.black};
+        color: ${cssVar.purple};
+        box-shadow: 1px 2px ${cssVar.purple};
+    }
+`;
 const LogoSection = styled.div`
     width: 30%;
 `;
@@ -97,16 +116,25 @@ class OAuth extends React.Component {
     };
 
     render() {
-        const { provider } = this.props;
+        const { provider, clickable } = this.props;
         return (
             <Container>
                 <SigninBox>
-                    <Button type="submit" onClick={this.startAuth}>
-                        <LogoSection>
-                            <Logo src={Assets[provider]} />
-                        </LogoSection>
-                        <TextSection>{`Sign in with ${provider}`}</TextSection>
-                    </Button>
+                    {clickable ? (
+                        <Button type="submit" onClick={this.startAuth}>
+                            <LogoSection>
+                                <Logo src={Assets[provider]} />
+                            </LogoSection>
+                            <TextSection>{`Sign in with ${provider}`}</TextSection>
+                        </Button>
+                    ) : (
+                        <NoneClickable type="submit">
+                            <LogoSection>
+                                <Logo src={Assets[provider]} />
+                            </LogoSection>
+                            <TextSection>{`${provider} is not working yet`}</TextSection>
+                        </NoneClickable>
+                    )}
                 </SigninBox>
             </Container>
         );

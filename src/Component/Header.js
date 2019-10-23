@@ -51,7 +51,7 @@ const SignInOutButton = styled.button`
     padding-left: 20px;
     padding-right: 20px;
     margin-right: 50px;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 600;
     :hover {
         background-color: ${cssVar.purple};
@@ -69,6 +69,8 @@ const Header = () => (
             {({ state, actions }) =>
                 state.user.id ? (
                     <SignInOutButton onClick={actions.onSignOut}>
+                        Hello, {state.user.name}!
+                        <br />
                         Sign Out
                     </SignInOutButton>
                 ) : (

@@ -38,25 +38,23 @@ const SignInLikeButton = props => {
     return <LikeButton onClick={showModal}>❤</LikeButton>;
 };
 
-export default ({ like, isLike, setLike }) => {
+export default ({ like, isLike, user, setLike }) => {
     return (
         <Container>
             <LikeCounter>❤ {like || 0}</LikeCounter>
-            <AuthContext.AuthConsumer>
-                {({ state }) =>
-                    state.user.id ? (
-                        <LikeButton onClick={setLike} isLike={isLike}>
-                            ❤
-                        </LikeButton>
-                    ) : (
-                        <SignInModal
-                            signIn={modalActions => (
-                                <SignInLikeButton {...modalActions} />
-                            )}
-                        />
-                    )
-                }
-            </AuthContext.AuthConsumer>
+            <>
+                {user.id ? (
+                    <LikeButton onClick={setLike} isLike={isLike}>
+                        ❤
+                    </LikeButton>
+                ) : (
+                    <SignInModal
+                        signIn={modalActions => (
+                            <SignInLikeButton {...modalActions} />
+                        )}
+                    />
+                )}
+            </>
         </Container>
     );
 };

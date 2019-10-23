@@ -5,9 +5,9 @@ import Modal from './Modal';
 import { cssVar } from '../../vars';
 import OAuth from '../OAuth';
 import { API_URL } from '../../config';
-import AuthContext from '../AuthContext';
 
 const socket = io(API_URL);
+console.log(socket);
 
 const providers = ['google', 'facebook'];
 
@@ -54,13 +54,23 @@ class SignInModal extends React.Component {
                     <Modal closeModal={closeModal}>
                         <ChildrenContainer>
                             <Title>Sign In</Title>
-                            {providers.map(provider => (
-                                <OAuth
-                                    provider={provider}
-                                    key={provider}
-                                    socket={socket}
-                                />
-                            ))}
+                            {providers.map(provider =>
+                                provider === 'facebook' ? (
+                                    <OAuth
+                                        provider={provider}
+                                        key={provider}
+                                        socket={socket}
+                                        clickable={false}
+                                    />
+                                ) : (
+                                    <OAuth
+                                        provider={provider}
+                                        key={provider}
+                                        socket={socket}
+                                        clickable
+                                    />
+                                )
+                            )}
                         </ChildrenContainer>
                     </Modal>
                 )}
