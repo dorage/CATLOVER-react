@@ -20,7 +20,12 @@ const Container = styled.div`
 `;
 
 const Link = styled.a`
-    margin-left: 30px;
+    @media (min-width: 320px) and (max-width: 1024px) {
+        margin-left: 20px;
+    }
+    @media (min-width: 1025px) {
+        margin-left: 30px;
+    }
 `;
 const Home = styled.div`
     background: url(${Assets.imgHottieLogo});
@@ -32,15 +37,6 @@ const Home = styled.div`
     color: white;
 `;
 
-const Greeting = styled.div`
-    color: ${cssVar.white};
-    height: 100%;
-`;
-const Name = styled.div`
-    color: ${cssVar.gold};
-    height: 100%;
-`;
-
 const SignInOutButton = styled.button`
     display: flex;
     background-color: ${cssVar.black};
@@ -48,13 +44,21 @@ const SignInOutButton = styled.button`
     border: none;
     color: ${cssVar.white};
     cursor: pointer;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-right: 50px;
-    font-size: 18px;
-    font-weight: 600;
     :hover {
         background-color: ${cssVar.purple};
+    }
+
+    @media (min-width: 320px) and (max-width: 1024px) {
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 14px;
+    }
+    @media (min-width: 1025px) {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-right: 50px;
+        font-size: 18px;
+        font-weight: 600;
     }
 `;
 

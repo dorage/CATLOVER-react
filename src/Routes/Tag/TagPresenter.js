@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import { cssVar } from '../../vars';
+import Grid from '../../Component/Grid';
 
 const Container = styled.div`
     display: flex;
@@ -9,23 +9,6 @@ const Container = styled.div`
     color: white;
     justify-content: center;
     align-items: center;
-`;
-
-const TagName = styled.div`
-    width: 100%;
-    font-size: 70px;
-    font-weight: 700;
-    margin-bottom: ${cssVar.headerH};
-`;
-
-const Grid = styled.div`
-    display: grid;
-    width: 100%;
-    grid-template-columns: auto auto auto auto auto;
-    grid-column-gap: 30px;
-    grid-row-gap: 30px;
-    grid-column-start: 1;
-    grid-column-end: 5;
 `;
 const SLink = styled(Link)`
     display: block;
@@ -37,8 +20,7 @@ const Post = styled.img`
 
 const TagPresent = ({ name, page, pics, results, endOfResults, loading }) => (
     <Container>
-        <TagName>tag : {name}</TagName>
-        <Grid>
+        <Grid title={`tag : ${name}`}>
             {loading ? (
                 <></>
             ) : (

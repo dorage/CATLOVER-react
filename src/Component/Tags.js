@@ -5,6 +5,15 @@ import { cssVar } from '../vars';
 
 const Container = styled.div`
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media (min-width: 320px) and (max-width: 1024px) {
+        width: 100%;
+    }
+`;
+const TagContainer = styled.div`
+    display: flex;
     color: ${cssVar.white};
     flex-wrap: wrap;
     justify-content: center;
@@ -16,10 +25,10 @@ const SLink = styled(Link)`
 const Tag = styled.div`
     background-color: ${cssVar.charcoal};
     color: ${cssVar.white};
-    box-shadow: 1px 2px ${cssVar.white};
     margin: 5px;
     border: solid 1px;
     border-radius: 5px;
+    box-shadow: 1px 2px ${cssVar.white};
     padding: 5px 10px;
     max-width: 140px;
     overflow: hidden;
@@ -36,15 +45,17 @@ const Tags = props => {
     const { tags } = props;
     return (
         <Container>
-            {tags ? (
-                tags.map(({ _id, name }) => (
-                    <SLink key={`link-${_id}`} to={`/tag/${name}`}>
-                        <Tag key={`tag-${_id}`}>{name}</Tag>
-                    </SLink>
-                ))
-            ) : (
-                <></>
-            )}
+            <TagContainer>
+                {tags ? (
+                    tags.map(({ _id, name }) => (
+                        <SLink key={`link-${_id}`} to={`/tag/${name}`}>
+                            <Tag key={`tag-${_id}`}>{name}</Tag>
+                        </SLink>
+                    ))
+                ) : (
+                    <></>
+                )}
+            </TagContainer>
         </Container>
     );
 };

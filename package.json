@@ -21,7 +21,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "start-server": "serve -s build -l 80"
+        "start-server": "sudo forever start -c serve build -p 80",
+        "copy-dotenv": "cp -r ../configs/react/.env ./"
     },
     "eslintConfig": {
         "extends": "react-app"

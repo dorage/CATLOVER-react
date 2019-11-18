@@ -14,7 +14,6 @@ class AuthProvider extends React.Component {
             window.location.reload();
         },
         onSignOut: () => {
-            console.log('logout');
             localStorage.removeItem('user');
             this.setState({ user: {} });
         }
@@ -28,7 +27,6 @@ class AuthProvider extends React.Component {
                     ? {}
                     : JSON.parse(localStorage.getItem('user'));
             this.setState({ user });
-            console.log(user);
         } catch (e) {
             localStorage.removeItem('user');
         }

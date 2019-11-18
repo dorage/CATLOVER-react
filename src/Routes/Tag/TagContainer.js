@@ -17,7 +17,6 @@ export default class extends React.Component {
             window.innerHeight + document.documentElement.scrollTop !==
             document.documentElement.offsetHeight
         ) {
-            console.log('scroll!');
             return;
         }
 
@@ -27,10 +26,8 @@ export default class extends React.Component {
             const {
                 data: { results: newResults, endOfPage }
             } = await serverApi.getTagDetail(name, page + 1);
-            console.log(newResults);
             // 더이상 불러올게 없을때
             if (endOfPage) {
-                console.log(endOfPage);
                 return;
             }
             const concatResults = results.posts.concat(newResults.posts);

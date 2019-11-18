@@ -33,7 +33,6 @@ export default class extends React.Component {
             } = await serverApi.girlDetail(id, page + 1);
             // 더이상 불러올게 없을때
             if (endOfPage) {
-                console.log(endOfPage);
                 return;
             }
             const concatResults = results.post.concat(newResults.post);
@@ -56,7 +55,6 @@ export default class extends React.Component {
             const {
                 data: { results }
             } = await serverApi.girlDetail(id);
-            console.log(results);
             this.setState({ id, results, loading: false });
         } catch (e) {
             console.log(e);

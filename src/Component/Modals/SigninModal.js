@@ -7,7 +7,6 @@ import OAuth from '../OAuth';
 import { API_URL } from '../../config';
 
 const socket = io(API_URL);
-console.log(socket);
 
 const providers = ['google', 'facebook'];
 
@@ -34,11 +33,9 @@ class SignInModal extends React.Component {
 
     actions = {
         showModal: () => {
-            console.log('open');
             this.setState({ display: true });
         },
         closeModal: () => {
-            console.log('close');
             this.setState({ display: false });
         }
     };

@@ -16,9 +16,27 @@ const SigninBox = styled.div`
 `;
 const Button = styled.button`
     display: flex;
-    width: 60%;
-    height: 40px;
-    font-size: 18px;
+    @media (min-width: 320px) and (max-width: 1024px) {
+        width: 80%;
+        height: 40px;
+        font-size: 14px;
+        :active {
+            background-color: ${cssVar.black};
+            color: ${cssVar.purple};
+            box-shadow: 1px 2px ${cssVar.purple};
+        }
+    }
+    @media (min-width: 1025px) {
+        width: 60%;
+        height: 40px;
+        font-size: 18px;
+        :hover {
+            background-color: ${cssVar.black};
+            color: ${cssVar.purple};
+            box-shadow: 1px 2px ${cssVar.purple};
+        }
+    }
+    align-items: center;
     background-color: ${cssVar.charcoal};
     color: ${cssVar.white};
     box-shadow: 1px 2px ${cssVar.white};
@@ -27,17 +45,30 @@ const Button = styled.button`
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
-    :hover {
-        background-color: ${cssVar.black};
-        color: ${cssVar.purple};
-        box-shadow: 1px 2px ${cssVar.purple};
-    }
 `;
 const NoneClickable = styled.button`
     display: flex;
-    width: 60%;
-    height: 40px;
-    font-size: 18px;
+    @media (min-width: 320px) and (max-width: 1024px) {
+        width: 80%;
+        height: 40px;
+        font-size: 14px;
+        :active {
+            background-color: ${cssVar.black};
+            color: ${cssVar.purple};
+            box-shadow: 1px 2px ${cssVar.purple};
+        }
+    }
+    @media (min-width: 1025px) {
+        width: 60%;
+        height: 40px;
+        font-size: 18px;
+        :hover {
+            background-color: ${cssVar.black};
+            color: ${cssVar.purple};
+            box-shadow: 1px 2px ${cssVar.purple};
+        }
+    }
+    align-items: center;
     background-color: ${cssVar.charcoal};
     color: ${cssVar.white};
     box-shadow: 1px 2px ${cssVar.white};
@@ -46,11 +77,6 @@ const NoneClickable = styled.button`
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
-    :hover {
-        background-color: ${cssVar.black};
-        color: ${cssVar.purple};
-        box-shadow: 1px 2px ${cssVar.purple};
-    }
 `;
 const LogoSection = styled.div`
     width: 30%;
@@ -73,7 +99,6 @@ class OAuth extends React.Component {
 
         socket.on(provider, user => {
             this.popup.close();
-            console.log(user);
             onSignIn(user);
         });
     }

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { cssVar } from '../../vars';
-import AuthContext from '../AuthContext';
 import SignInModal from '../Modals/SigninModal';
 
 const Container = styled.div`

@@ -2,9 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { cssVar } from '../vars';
 
-const Container = styled.div``;
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
 const Line = styled.hr`
     border-color: ${cssVar.gold};
+    width: 90%;
 `;
 const FooterBox = styled.div`
     display: flex;

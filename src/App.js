@@ -5,9 +5,15 @@ import GlobalStyles from './Component/GlobalStyles';
 import Router from './Component/Router';
 import Footer from './Component/Footer';
 import AuthContext from './Component/AuthContext';
+import ScrollToTop from './Component/ScrollToTop';
 
 const Container = styled.div`
-    padding: 50px;
+    @media (min-width: 320px) and (max-width: 1024px) {
+        padding: 20px;
+    }
+    @media (min-width: 1025px) {
+        padding: 50px;
+    }
 `;
 
 const App = () => {
@@ -17,6 +23,7 @@ const App = () => {
             <Header />
             <Container>
                 <Router />
+                <ScrollToTop />
             </Container>
             <Footer />
         </AuthContext.AuthProvider>

@@ -10,6 +10,7 @@ const Instagram = styled.div`
     background: url(${Assets.imgInstagramIcon});
     background-position: center;
     background-size: contain;
+    background-repeat: no-repeat;
     width: 25px;
     height: 25px;
     margin-right: 5px;
@@ -18,9 +19,14 @@ const InstagramLink = styled.div``;
 const Link = styled.a`
     display: inline-block;
     line-height: 25px;
-    font-size: 20px;
     text-decoration: solid;
     color: grey;
+    @media (min-width: 320px) and (max-width: 1024px) {
+        font-size: 14px;
+    }
+    @media (min-width: 1025px) {
+        font-size: 20px;
+    }
 `;
 
 export default props => {

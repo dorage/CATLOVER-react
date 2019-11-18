@@ -6,19 +6,33 @@ import Tags from './Tags';
 
 const Container = styled.div`
     display: flex;
-    top: 30px;
     width: 100%;
-    height: 400px;
     color: white;
+    @media (min-width: 320px) and (max-width: 1024px) {
+        flex-direction: column;
+    }
+    @media (min-width: 1025px) {
+        height: 400px;
+    }
 `;
 const RankingContainer = styled.div`
     display: flex;
     align-items: center;
     width: 20%;
+    @media (min-width: 320px) and (max-width: 1024px) {
+        display: none;
+    }
+    @media (min-width: 1025px) {
+    }
 `;
 
 const ManipulateContainer = styled.div`
-    width: 80%;
+    @media (min-width: 320px) and (max-width: 1024px) {
+        width: 100%;
+    }
+    @media (min-width: 1025px) {
+        width: 80%;
+    }
 `;
 
 const LogoContainer = styled.div`
@@ -32,24 +46,16 @@ const LogoContainer = styled.div`
 `;
 const Title = styled.img`
     display: block;
-    margin: 50px;
-    height: 50%;
-    width: auto;
-`;
-
-const TagContainer = styled.div`
-    display: flex;
-    height: 25%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
-const TagContainerMiddle = styled.div`
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    width: 50%;
+    @media (min-width: 320px) and (max-width: 1024px) {
+        margin: 50px;
+        width: 80%;
+        height: auto;
+    }
+    @media (min-width: 1025px) {
+        margin: 50px;
+        height: 50%;
+        width: auto;
+    }
 `;
 
 const MenuContainer = styled.div`
@@ -63,11 +69,7 @@ const Splash = ({ tags, loading }) => (
             <LogoContainer>
                 <Title src={Assets.imgHottieLogo}></Title>
             </LogoContainer>
-            <TagContainer>
-                <TagContainerMiddle>
-                    {loading ? <></> : <Tags tags={tags} />}
-                </TagContainerMiddle>
-            </TagContainer>
+            {loading ? <></> : <Tags tags={tags} />}
             <MenuContainer></MenuContainer>
         </ManipulateContainer>
         <RankingContainer>
