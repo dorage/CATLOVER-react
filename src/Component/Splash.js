@@ -49,7 +49,6 @@ const Title = styled.img`
     @media (min-width: 320px) and (max-width: 1024px) {
         margin: 50px;
         width: 80%;
-        height: auto;
     }
     @media (min-width: 1025px) {
         margin: 50px;

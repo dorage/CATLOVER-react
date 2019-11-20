@@ -5,7 +5,7 @@ import { serverApi } from '../../api';
 export default class extends React.Component {
     state = { like: 0, isLike: false, error: false };
 
-    componentDidUpdate = async () => {
+    componentDidMount = async () => {
         const { type, id, user } = this.props;
         try {
             let results;
