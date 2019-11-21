@@ -106,7 +106,7 @@ const RankingPresenter = ({
                 {loading &&
                     new Array(10 - results.girls.length).map((elem, index) => (
                         <RankBox>
-                            <Rank>{index}</Rank>
+                            <Rank>{index + results.girlRank.length + 1}</Rank>
                             <Name>loading</Name>
                             <Likes>0</Likes>
                         </RankBox>
@@ -138,7 +138,7 @@ const RankingPresenter = ({
                 {loading &&
                     new Array(10 - results.posts.length).map((elem, index) => (
                         <RankBox>
-                            <Rank>{index}</Rank>
+                            <Rank>{index + results.posts.length + 1}</Rank>
                             <Name>loading</Name>
                             <Likes>0</Likes>
                         </RankBox>
