@@ -71,7 +71,7 @@ const Header = () => (
     <Container>
         <AuthContext.AuthConsumer>
             {({ state, actions }) =>
-                state.user.id ? (
+                state.user.name ? (
                     <SignInOutButton onClick={actions.onSignOut}>
                         Hello, {state.user.name}!
                         <br />
@@ -82,6 +82,7 @@ const Header = () => (
                         signIn={modalActions => (
                             <SignInButton {...modalActions} />
                         )}
+                        socket={state.socket}
                     />
                 )
             }

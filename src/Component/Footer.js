@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 const Line = styled.hr`
     border-color: ${cssVar.gold};
-    width: 90%;
+    width: 100%;
 `;
 const FooterBox = styled.div`
     display: flex;

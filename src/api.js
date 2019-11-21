@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { API_URL } from './config';
 
+const baseApi = axios.create({
+    baseURL: `${API_URL}/`,
+    withCredentials: true
+});
 const api = axios.create({
     baseURL: `${API_URL}/api/`
 });
@@ -43,7 +47,15 @@ export const serverApi = {
             params: { page }
         }),
     // rank
-    totalRank: () => api.get('total/rank')
+    totalRank: () => api.get('total/rank'),
+    cookieSignIn: socketId =>
+        baseApi.get('cookie-signin', {
+            params: { socketId },
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': true
+            }
+        })
 };
 
 export const nothing = null;

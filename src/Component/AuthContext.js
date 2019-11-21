@@ -1,9 +1,13 @@
 import React, { createContext } from 'react';
+import io from 'socket.io-client';
+import { serverApi } from '../api';
+import { API_URL } from '../config';
 
 const { Provider, Consumer: AuthConsumer } = createContext();
 
 class AuthProvider extends React.Component {
     state = {
+        socket: null,
         user: {}
     };
 
@@ -20,14 +24,16 @@ class AuthProvider extends React.Component {
     };
 
     // 로그인 체크
-    componentWillMount() {
+    componentDidMount() {
         try {
             const user =
                 localStorage.getItem('user') === null
                     ? {}
                     : JSON.parse(localStorage.getItem('user'));
-            this.setState({ user });
+            const socket = io(API_URL);
+            this.setState({ user, socket });
         } catch (e) {
+            console.log(e);
             localStorage.removeItem('user');
         }
     }

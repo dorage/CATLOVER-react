@@ -96,7 +96,6 @@ class OAuth extends React.Component {
 
     componentDidMount() {
         const { socket, provider, onSignIn } = this.props;
-
         socket.on(provider, user => {
             this.popup.close();
             onSignIn(user);

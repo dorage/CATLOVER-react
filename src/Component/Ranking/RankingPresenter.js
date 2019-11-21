@@ -90,9 +90,9 @@ const RankingPresenter = ({
                     ? Array(10)
                           .fill(0)
                           .map((elem, index) => (
-                              <RankBox>
+                              <RankBox key={`loading-${index}`}>
                                   <Rank>{index + 1}</Rank>
-                                  <Name>loading</Name>
+                                  <Name to="/">loading</Name>
                                   <Likes>0</Likes>
                               </RankBox>
                           ))
@@ -109,9 +109,9 @@ const RankingPresenter = ({
                     new Array(10 - results.girls.length)
                         .fill(0)
                         .map((elem, index) => (
-                            <RankBox>
+                            <RankBox key={`untitled-${index}`}>
                                 <Rank>{index + results.girls.length + 1}</Rank>
-                                <Name>-</Name>
+                                <Name to="/">-</Name>
                                 <Likes>-</Likes>
                             </RankBox>
                         ))
@@ -129,9 +129,9 @@ const RankingPresenter = ({
                     ? Array(10)
                           .fill(0)
                           .map((elem, index) => (
-                              <RankBox>
+                              <RankBox key={`loading-${index}`}>
                                   <Rank>{index + 1}</Rank>
-                                  <Name>loading</Name>
+                                  <Name to="/">loading</Name>
                                   <Likes>0</Likes>
                               </RankBox>
                           ))
@@ -148,9 +148,9 @@ const RankingPresenter = ({
                     new Array(10 - results.posts.length)
                         .fill(0)
                         .map((elem, index) => (
-                            <RankBox>
+                            <RankBox key={`untitled-${index}`}>
                                 <Rank>{index + results.posts.length + 1}</Rank>
-                                <Name>-</Name>
+                                <Name to="/">-</Name>
                                 <Likes>-</Likes>
                             </RankBox>
                         ))
