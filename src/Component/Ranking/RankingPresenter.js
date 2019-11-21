@@ -87,20 +87,30 @@ const RankingPresenter = ({
                     <Likes>LIKES</Likes>
                 </RankBox>
                 {loading
-                    ? Array(10).map((elem, index) => (
-                          <RankBox>
-                              <Rank>{index}</Rank>
-                              <Name>loading</Name>
-                              <Likes>0</Likes>
-                          </RankBox>
-                      ))
-                    : results.girl.map((elem, index) => (
+                    ? Array(10)
+                          .fill(0)
+                          .map((elem, index) => (
+                              <RankBox>
+                                  <Rank>{index}</Rank>
+                                  <Name>loading</Name>
+                                  <Likes>0</Likes>
+                              </RankBox>
+                          ))
+                    : results.girls.map((elem, index) => (
                           <RankBox key={elem._id}>
                               <Rank>{index + 1}</Rank>
                               <Name to={`/cat/${elem._id}`}>{elem.name}</Name>
                               <Likes>{elem.like}</Likes>
                           </RankBox>
                       ))}
+                {loading &&
+                    new Array(10 - results.girls.length).map((elem, index) => (
+                        <RankBox>
+                            <Rank>{index}</Rank>
+                            <Name>loading</Name>
+                            <Likes>0</Likes>
+                        </RankBox>
+                    ))}
             </RankContainer>
         ) : (
             // Post Ranking
@@ -118,13 +128,21 @@ const RankingPresenter = ({
                               <Likes>0</Likes>
                           </RankBox>
                       ))
-                    : results.post.map((elem, index) => (
+                    : results.posts.map((elem, index) => (
                           <RankBox key={elem._id}>
                               <Rank>{index + 1}</Rank>
                               <Name to={`/post/${elem._id}`}>{elem.link}</Name>
                               <Likes>{elem.like}</Likes>
                           </RankBox>
-                      ))}
+                      ))}{' '}
+                {loading &&
+                    new Array(10 - results.posts.length).map((elem, index) => (
+                        <RankBox>
+                            <Rank>{index}</Rank>
+                            <Name>loading</Name>
+                            <Likes>0</Likes>
+                        </RankBox>
+                    ))}
             </RankContainer>
         )}
     </Container>
