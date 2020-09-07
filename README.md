@@ -7,7 +7,7 @@ React 사용
 
 # 링크
 
--   CATLOVER 페이지 - [[링크]](http://www.catloverlife.com/)
+-   CATLOVER 페이지 - [[링크]]()
 -   CATLOVER API 페이지 - [[링크]](http://3.220.98.25:8383/ui)
 -   CATLOVER-API 깃허브 - [[링크]](https://github.com/dorage/CATLOVER-node)
 
